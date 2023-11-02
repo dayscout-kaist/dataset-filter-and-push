@@ -2,7 +2,7 @@ import os
 import requests
 from tqdm import tqdm
 from dotenv import load_dotenv
-from index_generator_v2 import Index_generator
+from index_generator_v3 import Index_generator
 
 # load environment variables
 load_dotenv()
@@ -24,7 +24,6 @@ if __name__ == '__main__':
     inseted_count = 0
     docs = generator.get_parsed_docs()
     for doc in tqdm(docs, total=len(docs)):
-        pass
         if doc == None: continue
         try:
             res = requests.post("{}/{}/_doc".format(ES_URL, generator.index_name), json=doc)
